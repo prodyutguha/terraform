@@ -29,7 +29,7 @@ Write-Host " Sending Mail to $u"
    </HTML>"
 
    $username = "migration1@iitism.ac.in"
-   $password = "jcuq phdy sayg ptcv"
+   $password = ""
 
    $smtpServer = "smtp.gmail.com"
    $port = "587"
