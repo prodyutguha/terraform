@@ -1,0 +1,6 @@
+---
+- name: Test connectivity and uptime
+  hosts: azure_servers
+  tasks:
+    - name: check uptime
+      command: uptime
