@@ -1,6 +1,21 @@
 ---
 - name: Test connectivity and uptime
   hosts: azure_servers
+  become: true
   tasks:
-    - name: check uptime
-      command: uptime
+    - name: Update all packages on the system
+      yum:
+        name: "*"
+        state: latest
+        update_cache: yes
+      
+    - name: Check if a rebbot is required
+      shell: needs-restarting -r
+      failed_when: false
+      changed_when: false
+      register: reboot_required
+
+    - name: Reboot if required
+      reboot:
+        reboot_timeout: 300
+      when: reboot_required == 1
