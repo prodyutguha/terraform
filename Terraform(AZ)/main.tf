@@ -11,8 +11,8 @@ module "Redhat" {
   location_name = "${var.location_name}"
 }
 
-module "Start_stop" {
-  source = "./Module/VM_AutoStrat_Stop"
-  redhat_resource_name = "${var.redhat_resource_name}"
-  location_name = "${var.location_name}"
-}
+# module "Start_stop" {
+#   source = "./Module/VM_AutoStrat_Stop"
+#   redhat_resource_name = "${var.redhat_resource_name}"
+#   location_name = "${var.location_name}"
+# }
