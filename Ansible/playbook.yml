@@ -19,3 +19,14 @@
       reboot:
         reboot_timeout: 300
       when: reboot_required == 1
+    
+    - name: Install Apache
+      yum:
+        name: httpd
+        state: present
+    
+    - name: Start Apache service
+      service:
+        name: httpd
+        state: started
+        enabled: true
