@@ -15,7 +15,7 @@ variable "kb_number_to_include" {
 
 variable "start_date_time" {
   type    = string
-  default = "2025-07-23 18:00"
+  default = "2025-07-23 11:00"
 }
 
 variable "recur_every" {
