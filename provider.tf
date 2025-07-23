@@ -1,7 +1,7 @@
 
 terraform {
   backend "azurerm" {
-    resource_group_name = "RG-Terraform-Storage-Account"
+    resource_group_name  = "RG-Terraform-Storage-Account"
     storage_account_name = "tfstorage43blrg"
     container_name       = "tfstate"
     key                  = "patchings.tfstate"

@@ -1,6 +1,6 @@
 variable "classifications_to_include" {
   type    = list(string)
-  default = [ "Critical", "Security", "UpdateRollup", "FeaturePack", "ServicePack", "Definition", "Updates" ]
+  default = ["Critical", "Security", "UpdateRollup", "FeaturePack", "ServicePack", "Definition", "Updates"]
 }
 
 variable "kb_number_to_exclude" {
@@ -10,7 +10,7 @@ variable "kb_number_to_exclude" {
 
 variable "kb_number_to_include" {
   type    = list(string)
-  default = [ "5034439", "2267602", "5024127", "4589208" ]
+  default = ["5034439", "2267602", "5024127", "4589208"]
 }
 
 variable "start_date_time" {
@@ -21,7 +21,7 @@ variable "start_date_time" {
 variable "recur_every" {
   type    = string
   default = ""
-  
+
 }
 
 # variable "expiration_date_time" {
@@ -31,9 +31,9 @@ variable "recur_every" {
 
 variable "Patch_Group_ID" {
   type = map(object({
-    start_date_time        = string
+    start_date_time = string
     #expiration_date_time  = string
-    recur_every            = string
+    recur_every = string
   }))
 }
 
