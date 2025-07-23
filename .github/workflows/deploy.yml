@@ -1,36 +1,37 @@
-name: Terraform Auto Deploy
+name: Manual Terraform Deploy
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - '**/*.tf'
-      - '**/*.tfvars'
-  pull_request:
-    paths:
-      - '**/*.tf'
-      - '**/*.tfvars'
-  workflow_dispatch:
+  workflow_dispatch:  # 🚀 Trigger manually from GitHub Actions tab
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./TERRAFORM  # 🔁 Change if your TF files are elsewhere
+
     steps:
-      - uses: actions/checkout@v3
-      - uses: azure/login@v1
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Azure Login
+        uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - uses: hashicorp/setup-terraform@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Format Check
-        run: terraform fmt -check
+        run: terraform fmt -check -recursive
 
       - name: Terraform Init
         run: terraform init
 
       - name: Terraform Plan
-        run: terraform plan -var-file="variables.tfvars" -input=false
+        run: terraform plan -input=false -var-file="variables.tfvars" -out=tfplan
 
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/main'
-        run: terraform apply -auto-approve -var-file="variables.tfvars" -input=false
+        run: terraform apply -input=false tfplan
