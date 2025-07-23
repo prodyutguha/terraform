@@ -14,7 +14,7 @@ resource "azurerm_maintenance_configuration" "maintenance_configuration" {
   window {
     start_date_time = var.start_date_time
     #expiration_date_time  = var.expiration_date_time
-    duration    = "11:00"
+    duration    = "02:00"
     time_zone   = "India Standard Time"
     recur_every = each.value.recur_every
   }
