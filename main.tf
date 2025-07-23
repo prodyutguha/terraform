@@ -37,7 +37,7 @@ resource "azurerm_maintenance_assignment_dynamic_scope" "maintenance_assignment_
   maintenance_configuration_id     = azurerm_maintenance_configuration.maintenance_configuration[each.key].id
 
   filter {
-    #locations = ["East US"]
+    #locations              = ["East US"]
     os_types                = ["Windows"]
     #resource_groups        = ["azurerm_resource_group.RG.name"]
     resource_types          = ["Microsoft.Compute/virtualMachines"]
