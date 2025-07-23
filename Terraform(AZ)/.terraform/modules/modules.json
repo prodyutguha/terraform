@@ -1,1 +1,0 @@
-{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"RG","Source":"./Module/First_Resource_Group","Dir":"Module/First_Resource_Group"},{"Key":"Redhat","Source":"./Module/Redhat_vm","Dir":"Module/Redhat_vm"},{"Key":"Start_stop","Source":"./Module/VM_AutoStrat_Stop","Dir":""}]}
