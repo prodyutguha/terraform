@@ -1,9 +1,8 @@
-name: Deploy Terraform Configuration
-# This GitHub Actions workflow automatically applies Terraform configurations
+name: Terraform Auto Deploy
 
 on:
   push:
-    branches: [main]  # Only auto-applies on push to main
+    branches: [main]
     paths:
       - '**/*.tf'
       - '**/*.tfvars'
@@ -11,15 +10,12 @@ on:
     paths:
       - '**/*.tf'
       - '**/*.tfvars'
-  workflow_dispatch:  # optional manual trigger
+  workflow_dispatch:
 
 jobs:
   terraform:
+    name: Terraform Init/Plan/Apply
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: TERRAFORM  # change this if your .tf files are elsewhere
 
     steps:
       - name: Checkout Repository
@@ -31,14 +27,34 @@ jobs:
           terraform_version: 1.6.6
 
       - name: Terraform Init
-        run: terraform init
+        run: terraform -chdir=TERRAFORM init
+        env:
+          ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+          ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
 
       - name: Terraform Validate
-        run: terraform validate
+        run: terraform -chdir=TERRAFORM validate
+        env:
+          ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+          ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
 
       - name: Terraform Plan
-        run: terraform plan -var-file="variables.tfvars" -input=false
+        run: terraform -chdir=TERRAFORM plan -var-file="variables.tfvars" -input=false
+        env:
+          ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+          ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
 
       - name: Terraform Apply (Auto-Approve)
         if: github.ref == 'refs/heads/main'
-        run: terraform apply -auto-approve -var-file="variables.tfvars" -input=false
+        run: terraform -chdir=TERRAFORM apply -auto-approve -var-file="variables.tfvars" -input=false
+        env:
+          ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+          ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
