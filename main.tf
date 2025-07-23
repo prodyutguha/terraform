@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "Patching_RG" {
-  name     = "Patching_Windows"
+  name     = "Patch_Windows"
   location = "West Europe"
 }
 

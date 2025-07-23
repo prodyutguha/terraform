@@ -4,7 +4,7 @@ terraform {
     resource_group_name = "RG-Terraform-Storage-Account"
     storage_account_name = "tfstorage43blrg"
     container_name       = "tfstate"
-    key                  = "patch.tfstate"
+    key                  = "patchings.tfstate"
   }
 
   required_providers {
