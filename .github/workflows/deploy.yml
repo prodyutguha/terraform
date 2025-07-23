@@ -10,7 +10,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./terraform  # 🔁 Change if your TF files are elsewhere
+        # working-directory: ./terraform  # 🔁 Change if your TF files are elsewhere
 
     steps:
       - name: Checkout Repository
