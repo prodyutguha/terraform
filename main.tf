@@ -9,7 +9,7 @@ resource "azurerm_maintenance_configuration" "maintenance_configuration" {
   resource_group_name  = azurerm_resource_group.Patching_RG.name
   location  = "West Europe"
   scope = "InGuestPatch"
-  in_guest_user_patch_mode = "Platform"
+  in_guest_user_patch_mode = "User"
 
   window {
     start_date_time = var.start_date_time
