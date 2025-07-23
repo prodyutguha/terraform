@@ -37,6 +37,6 @@ variable "Patch_Group_ID" {
   }))
 }
 
-# variable "tags" {
-#   type = map(string)
-# }
+variable "tags" {
+  type = map(string)
+}
