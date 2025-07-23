@@ -1,0 +1,44 @@
+name: Deploy Terraform Configuration
+# This GitHub Actions workflow automatically applies Terraform configurations
+
+on:
+  push:
+    branches: [main]  # Only auto-applies on push to main
+    paths:
+      - '**/*.tf'
+      - '**/*.tfvars'
+  pull_request:
+    paths:
+      - '**/*.tf'
+      - '**/*.tfvars'
+  workflow_dispatch:  # optional manual trigger
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: TERRAFORM  # change this if your .tf files are elsewhere
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.6.6
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan -var-file="variables.tfvars" -input=false
+
+      - name: Terraform Apply (Auto-Approve)
+        if: github.ref == 'refs/heads/main'
+        run: terraform apply -auto-approve -var-file="variables.tfvars" -input=false

@@ -1,46 +1,36 @@
-variable "resource_name" {
-  type = string
-  default = "terraform-az"
+variable "classifications_to_include" {
+  type = list(string)
+  default = [ "Critical", "Security", "UpdateRollup", "FeaturePack", "ServicePack", "Definition", "Updates" ]
 }
 
-variable "location_name" {
-  type = string
-  default = "East US"
+variable "kb_number_to_exclude" {
+  type = list(string)
+  default = []
 }
 
-
-variable "redhat_resource_name" {
-  type = string
-  default = "terraform-redhat-az"
+variable "kb_number_to_include" {
+  type = list(string)
+  default = [ "5034439", "2267602", "5024127", "4589208" ]
 }
 
-
-variable "vm_name" {
+variable "start_date_time" {
   type = string
-  default = "myVM"
+  default = "2025-07-23 18:00"
 }
 
-variable "resource_group" {
-  type = string
-  default = "myResourceGroup"
+# variable "expiration_date_time" {
+#   type = string
+#   default = "2025-12-24 20:00"
+# }
+
+variable "Patch_Group_ID" {
+  type = map(object({
+    start_date_time = string
+    #expiration_date_time  = string
+    recur_every = string
+  }))
 }
 
-variable "vm_size" {
-  type = string
-  default = "Standard_B1s"
-}
-
-variable "location" {
-  type = string
-  default = "East US"
-}
-
-variable "admin_username" {
-  type = string
-  default = "adminuser"
-}
-
-variable "admin_password" {
-  type = string
-  default = "P@$$w0rd1234!"
+variable "tags" {
+  type = map(string)
 }
