@@ -23,8 +23,8 @@ resource "azurerm_maintenance_configuration" "maintenance_configuration" {
   install_patches {
     windows {
       classifications_to_include = var.classifications_to_include
-      kb_numbers_to_exclude       = var.kb_number_to_exclude
-      kb_numbers_to_include       = var.kb_numbers_to_include
+      kb_numbers_to_exclude      = var.kb_number_to_exclude
+      kb_numbers_to_include      = var.kb_numbers_to_include
     }
     reboot = "IfRequired"
   }
