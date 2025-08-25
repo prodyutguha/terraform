@@ -8,7 +8,7 @@ variable "kb_number_to_exclude" {
   default = []
 }
 
-variable "kb_numbers_to_include" {
+variable "kb_number_to_include" {
   type    = list(string)
   default = []
 }
