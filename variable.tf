@@ -10,12 +10,12 @@ variable "kb_number_to_exclude" {
 
 variable "kb_number_to_include" {
   type    = list(string)
-  default = ["5034439", "2267602", "5024127", "4589208"]
+  default = []
 }
 
 variable "start_date_time" {
   type    = string
-  default = "2025-07-23 11:00"
+  default = "2025-08-25 01:00"
 }
 
 variable "recur_every" {
