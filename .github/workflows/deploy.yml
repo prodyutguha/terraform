@@ -30,11 +30,11 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
-      - name: Import Existing Dynamic Scopes
-        run: |
-          for scope in $(jq -r '.Patch_Group_ID | keys[]' variables.tfvars); do
-            terraform import "azurerm_maintenance_assignment_dynamic_scope.maintenance_assignment_dynamic[\"$scope\"]" "/subscriptions/${{ secrets.AZ_SUB_ID }}/providers/Microsoft.Maintenance/configurationAssignments/scope-$scope" || true
-          done
+      # - name: Import Existing Dynamic Scopes
+      #   run: |
+      #     for scope in $(jq -r '.Patch_Group_ID | keys[]' variables.tfvars); do
+      #       terraform import "azurerm_maintenance_assignment_dynamic_scope.maintenance_assignment_dynamic[\"$scope\"]" "/subscriptions/${{ secrets.AZ_SUB_ID }}/providers/Microsoft.Maintenance/configurationAssignments/scope-$scope" || true
+      #     done
 
       - name: Terraform Plan
         run: terraform plan -input=false -var-file="variables.tfvars" -out=tfplan
