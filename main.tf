@@ -38,10 +38,10 @@ resource "azurerm_maintenance_assignment_dynamic_scope" "maintenance_assignment_
 
   filter {
     #locations              = ["East US"]
-    os_types = ["Windows"]
-    resource_groups        = []
-    resource_types = ["Microsoft.Compute/virtualMachines"]
-    tag_filter     = "Any"
+    os_types        = ["Windows"]
+    resource_groups = []
+    resource_types  = ["Microsoft.Compute/virtualMachines"]
+    tag_filter      = "Any"
     tags {
       tag    = "Patch Group ID"
       values = [each.key]
